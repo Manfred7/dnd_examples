@@ -1,0 +1,55 @@
+.App {
+    font-family: sans-serif;
+    text-align: center;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    width: 1000px;
+}
+
+.draggable-elements {
+    padding: 10px;
+
+    border-radius: 10px;
+    height: 500px;
+    width: 400px;
+    background-color: #e1e1e1;
+}
+
+.dropped-elements {
+    padding: 10px;
+
+    border-radius: 10px;
+    height: 500px;
+    width: 400px;
+    background-color: #ecfed6;
+
+    margin-right: 100px;
+
+}
+
+.draggable-element {
+    display: inline-block;
+    font-size: 80px;
+    line-height: 80px;
+    /* чтобы курсор не превращался в текст и не происходило выделение при клике */
+    user-select: none;
+}
+
+.dropped-element {
+    font-size: 80px;
+    line-height: 80px;
+    user-select: none;
+}
+
+.drop-target {
+    border-radius: 10px;
+    padding: 10px;
+    height: 500px;
+    box-sizing: border-box;
+    border: 1px solid #000;
+    display: flex;
+    flex-wrap: wrap;
+}

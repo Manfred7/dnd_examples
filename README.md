@@ -1,1 +1,1 @@
-# dnd_examples
+Эксперименты в рамках освоения react и react-dnd
