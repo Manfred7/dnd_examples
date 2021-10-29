@@ -14,9 +14,9 @@ export const Draggable = (props) => {
 
     return (
         !isDrag && (
-            <div ref={dragRef} className="draggable-element">
-                {data.content}
-            </div>
+            <li ref={dragRef} className="draggable-element">
+                {data.data.content}
+            </li>
         )
     );
 };

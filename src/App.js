@@ -5,82 +5,7 @@ import {DndProvider} from "react-dnd";
 import React from "react";
 import {DropTarget} from "./Components/drop-target";
 import {Draggable} from "./Components/draggable";
-
-const listImages = [
-    {
-        id: 1,
-        content: '😁'
-    },
-    {
-        id: 2,
-        content: '🎩'
-    }
-    ,
-    {
-        id: 3,
-        content: '👁'
-    }
-    ,
-    {
-        id: 4,
-        content: '😎'
-    },
-    {
-        id: 5,
-        content: '😁'
-    },
-    {
-        id: 6,
-        content: '🎩'
-    }
-    ,
-    {
-        id: 7,
-        content: '👁'
-    }
-    ,
-    {
-        id: 8,
-        content: '😎'
-    },
-    {
-        id: 11,
-        content: '😁'
-    },
-    {
-        id: 12,
-        content: '🎩'
-    }
-    ,
-    {
-        id: 13,
-        content: '👁'
-    }
-    ,
-    {
-        id: 14,
-        content: '😎'
-    },
-    {
-        id: 15,
-        content: '😁'
-    },
-    {
-        id: 16,
-        content: '🎩'
-    }
-    ,
-    {
-        id: 17,
-        content: '👁'
-    }
-    ,
-    {
-        id: 18,
-        content: '😎'
-    }
-
-];
+import {listImages} from "./testData";
 
 
 const App = () => {
@@ -95,35 +20,43 @@ const App = () => {
     }, []);
 
     const onDropHandler = (item) => {
-        setDraggedElements([...draggedElements, item]);
 
-        setElements(elements.filter((elem) => elem.id !== item.id));
+        if (item.source === "2")
+            return
+
+        setDraggedElements([...draggedElements, item.data]);
+        setElements(elements.filter((elem) => elem.id !== item.data.id));
     };
+    const onDropToHomeHandler = (item) => {
 
+        if (item.source === "1")
+            return
+
+        setElements([...elements, item.data]);
+        setDraggedElements(draggedElements.filter((elem) => elem.id !== item.data.id));
+    };
     return (
         <DndProvider backend={HTML5Backend}>
             <article className="container">
-                <div className="draggable-elements">
-                    {elements.map((emoji) => (
-                        <Draggable key={emoji.id} data={emoji} />
-                    ))}
-                </div>
+                <DropTarget source="1" onDropHandler={onDropToHomeHandler}>
 
-                <div className="dropped-elements">
-                    <DropTarget onDropHandler={onDropHandler}>
-                        {draggedElements.map((item) => (
-                            <div key={item.id} className="dropped-element">
-                                <span>{item.content}</span>
-                            </div>
-                        ))}
-                    </DropTarget>
-                </div>
+                    {elements.map((emoji) => (
+                        <Draggable key={emoji.id} data={{data: emoji, source: "1"}}/>
+                    ))}
+
+                </DropTarget>
+
+
+                <DropTarget source="2" onDropHandler={onDropHandler}>
+                    {draggedElements.map((emoji) => (
+                        <Draggable key={emoji.id} data={{data: emoji, source: "2"}}/>
+                    ))}
+                </DropTarget>
+
             </article>
         </DndProvider>
     );
 };
-
-
 
 
 export default App;

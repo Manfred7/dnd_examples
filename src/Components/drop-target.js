@@ -1,9 +1,9 @@
 import React from "react";
-import { useDrop } from "react-dnd";
+import {useDrop} from "react-dnd";
 
 export const DropTarget = (props) => {
-    const { children, onDropHandler } = props;
-    const [{ isOver }, dropRef] = useDrop({
+    const {children, onDropHandler} = props;
+    const [{isOver}, dropRef] = useDrop({
         accept: "emoji",
         drop(item) {
             onDropHandler(item);
@@ -16,8 +16,10 @@ export const DropTarget = (props) => {
     const borderColor = isOver ? "#f00" : "#000";
 
     return (
-        <div ref={dropRef} className="drop-target" style={{ borderColor }}>
-            {children}
-        </div>
+        <ul className="listTo" ref={dropRef} style={{borderColor}}>
+
+                {children}
+
+        </ul>
     );
 };
