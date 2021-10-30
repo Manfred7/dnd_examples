@@ -1,22 +1,11 @@
 import React from 'react';
 import {DropTarget} from "./drop-target";
-import {listImages} from "../testData";
 import {useSelector} from "react-redux";
 
 const DragAndDropContainer = () => {
 
-    const [elements, setElements] = React.useState([]);
-    const [draggedElements, setDraggedElements] = React.useState([]);
-
     // Получим все доски из хранилища
     const boards = useSelector(state => state.boardList.boards)
-
-    React.useEffect(() => {
-        setElements([
-            // При монтировании компонента добавляем в elements захардкоженные данные
-            ...listImages
-        ]);
-    }, []);
 
     return (
         <article className="container">

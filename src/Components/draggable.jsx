@@ -12,7 +12,6 @@ export const Draggable = (props) => {
         })
     });
 
-    console.log(data);
     return (
         !isDrag && (
             <li ref={dragRef} className="draggable-element">

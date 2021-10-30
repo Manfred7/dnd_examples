@@ -26,10 +26,10 @@ export const DropTarget = (props) => {
         })
     });
 
-    const borderColor = isOver ? "#f00" : "#000";
+    const borderColor = isOver ? "green" : "#000";
 
     return (
-        <ul className="listTo" ref={dropRef} style={{borderColor}}>
+        <ul className="listTo" ref={dropRef} style={{borderColor}} >
 
             {animals
                 // Получим массив животных, соответствующих целевому элементу
