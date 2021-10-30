@@ -1,12 +1,25 @@
 import React from "react";
 import {useDrop} from "react-dnd";
+import {useDispatch, useSelector} from "react-redux";
+import {UPDATE_TYPE} from "../services/actions/draggable";
+import {Draggable} from "./draggable";
 
 export const DropTarget = (props) => {
-    const {children, onDropHandler} = props;
+    const { board} = props;
+
+    const dispatch = useDispatch();
+    // Получим массив всех животных из хранилища
+    const animals = useSelector(state => state.animalList.animals)
+
     const [{isOver}, dropRef] = useDrop({
         accept: "emoji",
         drop(item) {
-            onDropHandler(item);
+            // Отправим экшен с текущим перетаскиваемым элементом и названием доски
+            dispatch({
+                type: UPDATE_TYPE,
+                ...item,
+                board
+            });
         },
         collect: (monitor) => ({
             isOver: monitor.isOver()
@@ -18,7 +31,12 @@ export const DropTarget = (props) => {
     return (
         <ul className="listTo" ref={dropRef} style={{borderColor}}>
 
-                {children}
+            {animals
+                // Получим массив животных, соответствующих целевому элементу
+                .filter(animal => animal.board === board)
+                // Отрисуем массив
+                .map(animal => <Draggable key={animal.id} data={animal} />)
+            }
 
         </ul>
     );
