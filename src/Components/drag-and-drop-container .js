@@ -1,6 +1,5 @@
 import React from 'react';
 import {DropTarget} from "./drop-target";
-import {Draggable} from "./draggable";
 import {listImages} from "../testData";
 import {useSelector} from "react-redux";
 
@@ -19,22 +18,6 @@ const DragAndDropContainer = () => {
         ]);
     }, []);
 
-    const onDropHandler = (item) => {
-
-        if (item.source === "2")
-            return
-
-        setDraggedElements([...draggedElements, item.data]);
-        setElements(elements.filter((elem) => elem.id !== item.data.id));
-    };
-    const onDropToHomeHandler = (item) => {
-
-        if (item.source === "1")
-            return
-
-        setElements([...elements, item.data]);
-        setDraggedElements(draggedElements.filter((elem) => elem.id !== item.data.id));
-    };
     return (
         <article className="container">
             {

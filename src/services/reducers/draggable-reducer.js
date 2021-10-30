@@ -1,4 +1,3 @@
-// /services/reducers/draggable-animal.js
 import { UPDATE_TYPE } from "../actions/draggable";
 import {listImages} from "../../testData";
 
